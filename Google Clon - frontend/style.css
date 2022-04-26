@@ -1,0 +1,22 @@
+#main {
+  width: 500px;
+  margin: auto;
+  text-align: center;
+}
+
+#logo {
+  width: 300px;
+}
+
+button {
+  padding: 7px 15px;
+}
+
+input {
+  width: 100%;
+  margin: 20px 0px;
+  height: 33px;
+  border-radius: 25px;
+  border-color: #CCC;
+  padding-left: 15px;
+}

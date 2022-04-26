@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Engine</title>
+
+  <link rel="stylesheet" href="results.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="main">
+    <img id="logo" src="img/logo.png" />
+    <input type="text" id="txtSearch" />
+    <hr />
+    <div id="results">
+      <span class="total-results">Página 1 de aproximadamente 4.860.000.000 resultados (0,57 segundos)</span>
+      <div id="links">
+        <div class="result">
+          <h3>Breaking news in english - Latest news in english</h3>
+          <span>The Local is the largest English-language news network in Europe. All the breaking news from Spain, in
+            English. Download Mobile App. Browse Editions. Gift Voucher Available.</span>
+        </div>
+        <div class="result">
+          <h3>Breaking news in english - Latest news in english</h3>
+          <span>The Local is the largest English-language news network in Europe. All the breaking news from Spain, in
+            English. Download Mobile App. Browse Editions. Gift Voucher Available.</span>
+        </div>
+        <div class="result">
+          <h3>Breaking news in english - Latest news in english</h3>
+          <span>The Local is the largest English-language news network in Europe. All the breaking news from Spain, in
+            English. Download Mobile App. Browse Editions. Gift Voucher Available.</span>
+        </div>
+        <div class="result">
+          <h3>Breaking news in english - Latest news in english</h3>
+          <span>The Local is the largest English-language news network in Europe. All the breaking news from Spain, in
+            English. Download Mobile App. Browse Editions. Gift Voucher Available.</span>
+        </div>
+        <div class="result">
+          <h3>Breaking news in english - Latest news in english</h3>
+          <span>The Local is the largest English-language news network in Europe. All the breaking news from Spain, in
+            English. Download Mobile App. Browse Editions. Gift Voucher Available.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    let aux = document.location.href.split('?query=');
+    let query = aux[1];
+    document.getElementById("txtSearch").value = query;
+
+    fetch('http://localhost:8080/api/search?query=' + query,)
+      .then(response => response.json())
+      .then(json => {
+        let html = '';
+        for (let resultSearch of json) {
+          html += getHtmlResultSearch(resultSearch);
+        }
+        document.getElementById("links").outerHTML = html;
+      });
+
+    function getHtmlResultSearch(resultSearch) {
+      return `<div class="result">
+        <h3><a href="${resultSearch.url}" target="_blank">${resultSearch.title}</a></h3>
+        <span>${resultSearch.description}</span>
+      </div>`;
+    }
+  </script>
+
+</body>
+
+</html>
